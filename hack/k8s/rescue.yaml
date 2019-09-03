@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ssb-rescue-deployment
+  namespace: scuttlebutt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssb-rescue
+  template:
+    metadata:
+      labels:
+        app: ssb-rescue
+    spec:
+      containers:
+        - name: ssb-rescue
+          image: debian:buster
+          imagePullPolicy: Always
+          command: ["/bin/bash", "-c", "--"]
+          args: ["while true; do sleep 30; done;"]
+          livenessProbe:
+            exec:
+              command:
+                - "sh"
+                - "true"
+            initialDelaySeconds: 180
+            periodSeconds: 300
+          volumeMounts:
+            - name: ssb-pub-volume
+              mountPath: "/data/ssb-old"
+      volumes:
+        - name: ssb-pub-volume
+          persistentVolumeClaim:
+            claimName: ssb-pvc

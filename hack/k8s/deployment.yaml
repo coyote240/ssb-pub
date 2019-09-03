@@ -44,7 +44,7 @@ data:
             {
               "scope": "public",
               "host": "0.0.0.0",
-              "external": "your.pub.domain or IP",
+              "external": "ssb.vexingworkshop.com",
               "transform": "shs",
               "port": 8008
             }
@@ -86,6 +86,11 @@ spec:
                 - whoami
             initialDelaySeconds: 30
             periodSeconds: 300
+          resources:
+            requests:
+              memory: "800M"
+            limits:
+              memory: "1G"
           ports:
             - containerPort: 8008
           volumeMounts:
