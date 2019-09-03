@@ -109,7 +109,7 @@ spec:
       volumes:
         - name: ssb-pub-volume
           persistentVolumeClaim:
-            claimName: ssb-pvc
+            claimName: ssb-pvc-extended
         - name: ssb-pub-config
           configMap:
             name: ssb-config

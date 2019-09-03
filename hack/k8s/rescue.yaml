@@ -29,7 +29,12 @@ spec:
           volumeMounts:
             - name: ssb-pub-volume
               mountPath: "/data/ssb-old"
+            - name: ssb-pub-volume-new
+              mountPath: "/data/ssb-new"
       volumes:
         - name: ssb-pub-volume
           persistentVolumeClaim:
             claimName: ssb-pvc
+        - name: ssb-pub-volume-new
+          persistentVolumeClaim:
+            claimName: ssb-pvc-extended
